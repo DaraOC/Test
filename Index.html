@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+	<title>Bootleg Games</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script>
+		$(document).on("mobileinit", function(){
+			/*
+			apply overrides here
+			example:
+			$.mobile.activeBtnClass = "my-class";
+			*/
+			$.mobile.defaultPageTransition = "slide";
+			$.mobile.buttonMarkup.hoverDelay = 100;
+			$.mobile.pageLoadErrorMessage = "Could not load page";
+		});
+	</script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body onload="onTick()">
+<script>
+var Games = 0;
+var Coders = 0;
+var OldCoderPrice = 0;
+var CoderPriceV = 20;
+var StartUpPriceV = 200;
+var TimingEvent = 0;
+var StartUp = 0;
+
+function onTick(){
+	var TimingEvent = setInterval(function(){
+		if(Coders > 0){
+		Games = Games + (Coders / 10);
+		var rounded = Math.round( Games * 10 ) / 10;
+		document.getElementById("results").innerHTML = rounded;
+	}
+		if(StartUp > 0){
+		Games = Games + StartUp;
+		var rounded = Math.round( Games * 10 ) / 10;
+		document.getElementById("results").innerHTML = rounded;
+	}
+	}, 1000);
+}
+function addGame(){
+	Games ++;
+	var rounded = Math.round( Games * 10 ) / 10;
+	document.getElementById("results").innerHTML = rounded;
+}
+function checkaddCoder(){
+	if(OldCoderPrice = 0){
+		Games = Games - 20;
+		Coders ++;
+		OldCoderPrice = 20;
+		CoderPriceVD = 20;
+		var CoderPriceV = Math.round( CoderPriceVD * 10 ) / 10;
+		document.getElementById("CoderPrice").innerHTML = CoderPriceV;
+		document.getElementById("results").innerHTML = rounded;
+	}
+	else if(Games >= (OldCoderPrice * 1.3)){
+		Games = Games - (OldCoderPrice * 1.3);
+		Coders ++;
+		OldCoderPrice = (OldCoderPrice * 1.3)
+		CoderPriceVD = (OldCoderPrice * 1.3);
+		var CoderPriceV = Math.round( CoderPriceVD * 10 ) / 10;
+		document.getElementById("CoderPrice").innerHTML = CoderPriceV;
+		document.getElementById("results").innerHTML = rounded;
+}
+}
+function checkaddStartUp(){
+	if(Games >= 200 + (200 * StartUp * 1.3)){
+	Games = Games - (200 + (200 * StartUp * 1.3));
+	StartUp ++;
+	StartUpPriceV = 200 + (200 * StartUp * 1.3);
+	document.getElementById("StartUpPrice").innerHTML = StartUpPriceV;
+	document.getElementById("results").innerHTML = rounded;
+}
+}
+</script>
+<section data-role="page" id="home">
+	<header data-role="header"><a href="#popupMenu" data-rel="popup" data-transition="slideup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-gear ui-btn-icon-left ui-btn-a">Dev Panel</a>
+			<div data-role="popup" id="popupMenu" data-theme="a">
+				<ul data-role="listview" data-inset="true">
+					<li data-role="list-divider">Choose an action</li>
+					<li><a onclick="cheatGame()">Gib Games</a></li>
+					<li><a onclick="cheatGame()">Gib Coders</a></li>
+					<li><a onclick="cheatGame()">Gib Start Ups</a></li>
+				</ul>
+			</div>
+		<h1>Page header</h1>
+	</header><!-- /header -->
+	<article role="main" class="ui-content">
+		<div align="center"><h1>Bootlegs Created:  <span id="results">0</span></h1></div>
+		<script>
+</script>
+		<fieldset class="ui-grid-c">
+		<div class="ui-block-a">
+			<br/>
+			<ul data-role="listview">
+				<li><a onclick="addGame()" class="ui-btn"><div align="center">Make a game</div></a></li>
+				<li><a onclick="checkaddCoder()" class="ui-btn"><div align="center">Buy Desperate Coder</div></a></li>
+				<li><a onclick="checkaddStartUp()" class="ui-btn"><div align="center">Buy Start Up</div></a></li>
+				<br/>
+			</ul>
+		</div>
+		<div class="ui-block-b">
+				<br/>
+			<ul data-role="listview">
+				<li><a class="ui-btn"><div align="center">Upgrades</div></a></li>
+				<li><a class="ui-btn"><div align="center">Upgrades</div></a></li>
+				<li><a class="ui-btn"><div align="center">Upgrades</div></a></li>
+				</br>
+			</ul>
+		</div>
+		<div class="ui-block-c">
+				<br/>
+			<ul data-role="listview">
+				<li>Yes, That's right. Make your own damn bootlegs.</li>
+				<li>He'll do anything for rent. Anything.</li>
+				<li>They dreamed of going big. Now they only make "Sario" games.</li>
+				</br>
+			</ul>
+		</div>
+		<div class="ui-block-d">
+				<br/>
+			<ul data-role="listview" id="lmargin">
+				<li>Free</li>
+				<li>Price <span id="CoderPrice">20</span></li>
+				<li>Price <span id="StartUpPrice">200</span></li>
+				</br>
+			</ul>
+		</div>
+		</fieldset>
+	</article><!-- /content -->
+	<footer data-role="footer" data-position="fixed">
+		<h4>Page footer</h4>
+	</footer><!-- /footer -->
+</section><!-- /page -->
+
+<section data-role="page" id="next">
+	<header data-role="header">
+		<h1>Page header</h1>
+	</header><!-- /header -->
+	<article role="main" class="ui-content">
+		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
+		<a href="#home" class="ui-btn" style="margin-bottom:20px" data-direction="reverse">home</a>
+		<ul data-role="listview">
+			<li><a href="#">item1</a></li>
+			<li><a href="#">item2</a></li>
+			<li><a href="#">item3</a></li>
+		</ul>
+	</article><!-- /content -->
+	<footer data-role="footer">
+		<h4>Page footer</h4>
+	</footer><!-- /footer -->
+</section><!-- /page -->
+
+</body>
+</html>
